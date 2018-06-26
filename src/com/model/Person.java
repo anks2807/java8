@@ -55,4 +55,10 @@ public class Person {
 				new Person("Kathy", "Seria", 41, GENDER.FEMALE.toString())
 				);
 	}
+	
+	@Override
+	public String toString() {
+		return "Person [FirstName:"+getFirstName()+", LastName:"+getLastName()+", Age:"+getAge()
+		+", Gender:"+getGender()+"]";
+	}
 }
