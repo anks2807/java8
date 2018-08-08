@@ -1,5 +1,6 @@
 package com.stringoperations;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,10 +14,12 @@ import java.util.stream.Collectors;
 public class DuplicateWord {
 
 	public static void main(String[] args) {
-		occrenceOfWordInJava8("Java is java again Java");
+		//occrenceOfWordInJava8("Java is java again Java");
+		//occurenceOfCharInJava7("Java is java again Java");
+		occurenceOfCharInJava8("Java is java again Java");
 	}
 
-	public static void occrenceOfWord(String word){
+	public static void occrenceOfWordInJava7(String word){
 		Map<String, Integer> wordCount = new HashMap<>();
 		String [] arrayOfWord = word.split(" ");
 		for(String str : arrayOfWord) {
@@ -37,12 +40,40 @@ public class DuplicateWord {
 		}
 	}
 	
+	public static void occurenceOfCharInJava7(String word) {
+		Map<Character, Integer> charCount = new HashMap<>();
+		for(Character ch : word.toCharArray()) {
+			if(charCount.containsKey(ch.toUpperCase(ch))) {
+				charCount.put(ch.toUpperCase(ch), charCount.get(ch.toUpperCase(ch)).intValue()+1);
+			} else {
+				charCount.put(ch.toUpperCase(ch), 1);
+			}
+		}
+		
+		Set<Character> charSet = charCount.keySet();
+		
+		Iterator<Character> itr = charSet.iterator();
+		while(itr.hasNext()) {
+			Character key = itr.next();
+			System.out.println(key +"->"+charCount.get(key) );
+		}
+	}
+	
 	public static void occrenceOfWordInJava8(String word) {
 		Map<String, Long> wordCount = new HashMap<>();
 		List<String> listOfWord = Arrays.asList(word.split(" "));
-		wordCount = listOfWord.stream().map(String::toLowerCase).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-		
+		wordCount = listOfWord.stream().map(String::toLowerCase).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));		
 		wordCount.forEach((key , value) -> System.out.println(key+ "-> "+ value));
 	}
+	
+	public static void occurenceOfCharInJava8(String word) {
+		char [] chars = word.toCharArray();
+		List<Character> charList = new ArrayList<>();
+		for(Character ch : chars) {
+			charList.add(ch.toUpperCase(ch));
+		}
+		Map<Character, Long> charCount = charList.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));		
+		charCount.forEach((key, value) -> System.out.println(key+"->"+value));
+ 	}
 
 }
