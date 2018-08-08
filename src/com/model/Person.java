@@ -48,10 +48,10 @@ public class Person {
 				new Person("Alex", "Hales", 42, GENDER.MALE.toString()),
 				new Person("Robert", "Adwards", 29, GENDER.MALE.toString()),
 				new Person("Micheal", "Palinio", 32, GENDER.MALE.toString()),
-				new Person("Josheph", "Root", 33, GENDER.MALE.toString()),
+				new Person("Adam", "Root", 33, GENDER.MALE.toString()),
 				new Person("Opra", "Winfrey", 27, GENDER.FEMALE.toString()),
 				new Person("Seam", "Willing", 31, GENDER.MALE.toString()),
-				new Person("Mery", "Jane", 38, GENDER.FEMALE.toString()),
+				new Person("Ample", "Jane", 38, GENDER.FEMALE.toString()),
 				new Person("Kathy", "Seria", 41, GENDER.FEMALE.toString())
 				);
 	}

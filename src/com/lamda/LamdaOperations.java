@@ -1,6 +1,7 @@
 package com.lamda;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
@@ -17,24 +18,24 @@ public class LamdaOperations {
 	
 	public static void main(String[] args) {
 		
+		List<Person> persons = Person.getPersons();
 		
 		System.out.println("List of all persons");
-		printPersonByGender((p) -> true, p -> System.out.println(p));
-		System.out.println("List of Males");
-		printPersonByGender((p) -> p.getGender().equals(GENDER.MALE.toString()),p -> System.out.println(p));
-		System.out.println("List of Females");
-		printPersonByGender((p) -> p.getGender().equals(GENDER.FEMALE.toString()),p -> System.out.println(p));
+		persons.forEach(p -> System.out.println(p));
 		
-		System.out.println("Count of Male: "+Person.getPersons().stream().filter(p -> p.getGender().equals(GENDER.MALE.toString())).count());;
+		persons.sort((p1,p2) -> p1.getFirstName().compareTo(p2.getFirstName()));
 		
-		System.out.println("Count of Male: "+Person.getPersons().stream().filter(p -> p.getGender().equals(GENDER.FEMALE.toString())).count());;
+		System.out.println("List of sorted persons");
+		persons.forEach(p -> System.out.println(p));
+		//persons.forEach(System.out::println);
+		
+		Creature c = new Creature();
+		c.move();
+		
+		Optional<Integer> iop = Optional.empty();
+		iop.ifPresent(System.out::println);
+		
 	}
 	
-	public static void printPersonByGender(Predicate<Person> predicate, Consumer<Person> consumer) {
-		for(Person p : Person.getPersons()) {
-			if(predicate.test(p)) {
-				consumer.accept(p);
-			}
-		}
-	}
+	
 }
