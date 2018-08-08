@@ -2,21 +2,25 @@ package com.stringoperations;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class DuplicateWord {
 
 	public static void main(String[] args) {
 		//occrenceOfWordInJava8("Java is java again Java");
 		//occurenceOfCharInJava7("Java is java again Java");
-		occurenceOfCharInJava8("Java is java again Java");
+		//occurenceOfCharInJava8("Java is java again Java");
+		duplicateCharsInStringJava8("aabbcdeeqqfffffh");
 	}
 
 	public static void occrenceOfWordInJava7(String word){
@@ -74,6 +78,20 @@ public class DuplicateWord {
 		}
 		Map<Character, Long> charCount = charList.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));		
 		charCount.forEach((key, value) -> System.out.println(key+"->"+value));
+		
  	}
+	
+	public static void duplicateCharsInStringJava8(String word) {
+		char [] chars = word.toCharArray();
+		List<Character> charList = new ArrayList<>();
+		for(Character ch : chars) {
+			charList.add(ch.toUpperCase(ch));
+		}
+		Map<Character, Long> charCount = charList.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));		
+		charCount.forEach((key, value) ->  {
+			if(value>1)
+			System.out.println(key+"->"+value);
+		});
+	}
 
 }
