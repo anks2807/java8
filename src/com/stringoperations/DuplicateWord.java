@@ -20,7 +20,9 @@ public class DuplicateWord {
 		//occrenceOfWordInJava8("Java is java again Java");
 		//occurenceOfCharInJava7("Java is java again Java");
 		//occurenceOfCharInJava8("Java is java again Java");
-		duplicateCharsInStringJava8("aabbcdeeqqfffffh");
+		//duplicateCharsInStringJava8("aabbcdeeqqfffffh");
+		occurenceOfCharWithoutLoop("aabbcdeeqqfffffhaa", 'a');
+		System.out.println(reverseString("AnkitSinghal"));
 	}
 
 	public static void occrenceOfWordInJava7(String word){
@@ -43,7 +45,7 @@ public class DuplicateWord {
 			System.out.println(key + "->" + wordCount.get(key));
 		}
 	}
-	
+
 	public static void occurenceOfCharInJava7(String word) {
 		Map<Character, Integer> charCount = new HashMap<>();
 		for(Character ch : word.toCharArray()) {
@@ -53,16 +55,16 @@ public class DuplicateWord {
 				charCount.put(ch.toUpperCase(ch), 1);
 			}
 		}
-		
+
 		Set<Character> charSet = charCount.keySet();
-		
+
 		Iterator<Character> itr = charSet.iterator();
 		while(itr.hasNext()) {
 			Character key = itr.next();
 			System.out.println(key +"->"+charCount.get(key) );
 		}
 	}
-	
+
 	public static void occrenceOfWordInJava8(String word) {
 		Map<String, Long> wordCount = new HashMap<>();
 		List<String> listOfWord = Arrays.asList(word.split(" "));
@@ -70,6 +72,11 @@ public class DuplicateWord {
 		wordCount.forEach((key , value) -> System.out.println(key+ "-> "+ value));
 	}
 	
+	public static String reverseString(String word) {
+		if(word == null || word.length() <=1) return word;
+		return reverseString(word.substring(1)) + word.charAt(0);
+	}
+
 	public static void occurenceOfCharInJava8(String word) {
 		char [] chars = word.toCharArray();
 		List<Character> charList = new ArrayList<>();
@@ -78,9 +85,14 @@ public class DuplicateWord {
 		}
 		Map<Character, Long> charCount = charList.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));		
 		charCount.forEach((key, value) -> System.out.println(key+"->"+value));
-		
- 	}
+
+	}
 	
+	public static void occurenceOfCharWithoutLoop(String word , char c) {
+		int occrence  = word.length() - word.replace(c+"", "").length();
+		System.out.println("occurence is "+ occrence);
+	}
+
 	public static void duplicateCharsInStringJava8(String word) {
 		char [] chars = word.toCharArray();
 		List<Character> charList = new ArrayList<>();
@@ -90,7 +102,7 @@ public class DuplicateWord {
 		Map<Character, Long> charCount = charList.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));		
 		charCount.forEach((key, value) ->  {
 			if(value>1)
-			System.out.println(key+"->"+value);
+				System.out.println(key+"->"+value);
 		});
 	}
 
