@@ -33,7 +33,22 @@ public class LongestStringOfNonRepeatingChars {
 		System.out.println("longest non repeating substring"+ longestNonRepeatingSubStr);
 
 	}
+	
+	public static void longestStringOfRepeatingChars(String str) {
+		
+		char [] charArray = str.toLowerCase().toCharArray();
+		int longestRepeatingCharLength;
+		for(int i=0 ; i < charArray.length; i++ ) {
+			
+		}
+	}
 
+}
+
+class Index{
+	int startIndex;
+	int endIndex;
+	Character ch;
 }
 
 

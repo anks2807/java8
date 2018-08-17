@@ -23,6 +23,7 @@ public class DuplicateWord {
 		//duplicateCharsInStringJava8("aabbcdeeqqfffffh");
 		occurenceOfCharWithoutLoop("aabbcdeeqqfffffhaa", 'a');
 		System.out.println(reverseString("AnkitSinghal"));
+		percentOfCharType("abcd12aajdbdh123");
 	}
 
 	public static void occrenceOfWordInJava7(String word){
@@ -104,6 +105,14 @@ public class DuplicateWord {
 			if(value>1)
 				System.out.println(key+"->"+value);
 		});
+	}
+	
+	public static void percentOfCharType(String word) {
+		List<Character> chList = new ArrayList<>();
+		for(Character ch : word.toCharArray()) {
+			chList.add(ch);
+		}
+		System.out.println(chList.stream().filter(Character::isDigit).count());;
 	}
 
 }
